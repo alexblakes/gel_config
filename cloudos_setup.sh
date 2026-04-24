@@ -7,7 +7,7 @@ set -eu
 conda install pixi -y
 
 # Install global packages with pixi
-pixi global install gh git starship
+pixi global install gh git starship cookiecutter
 
 # Install Oh My Zsh: 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -53,8 +53,3 @@ code-server --install-extension charliermarsh.ruff@2026.34.0
 
 # Restart the shell to apply changes
 bash
-
-# Don't forget to:
-#   Set up GitHub CLI: `gh auth login`
-#   Copy over VSCode keyboard shortcuts
-#   Remove all Firefox keyboard shortcuts: `about:keyboard`
