@@ -1,0 +1,10 @@
+module placeholder:
+    snakefile:
+        "path/to/placeholder.smk"
+
+use rule * from placeholder as placeholder_*
+
+
+rule all:
+    input:
+        rules.placeholder_all.input,

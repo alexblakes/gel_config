@@ -7,7 +7,7 @@ set -eu
 conda install pixi -y
 
 # Install global packages with pixi
-pixi global install gh git starship cookiecutter
+pixi global install gh git starship
 
 # Install Oh My Zsh: 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
