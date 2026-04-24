@@ -13,7 +13,9 @@ where = ["src"]
 [tool.pixi.workspace]
 channels = ["conda-forge", "bioconda"]
 platforms = ["osx-arm64", "linux-64"]
-conda-pypi-map = { conda-forge = "https://raw.githubusercontent.com/prefix-dev/parselmouth/refs/heads/main/files/compressed_mapping.json", bioconda = "https://raw.githubusercontent.com/prefix-dev/parselmouth/refs/heads/main/files/compressed_mapping.json" }
+conda-pypi-map = { conda-forge = "./conda_pypi_map.json", bioconda = "./conda_pypi_map.json" }
+# conda-pypi-map with github access: "https://raw.githubusercontent.com/prefix-dev/parselmouth/refs/heads/main/files/compressed_mapping.json"
+# Or you could use no mapping by referencing an empty json file with only "{}"
 
 [tool.pixi.dependencies]
 python = "3.13.*"
@@ -36,7 +38,8 @@ snakefmt = ">=1.0.0,<2"
 pandas-checks = '>=1.1.0,<2'
 statannotations = '>=0.7.2,<0.8'
 adjusttext = ">=1.3.0,<2"
-ab_utils = { git = "https://github.com/alexblakes/ab_utils.git", branch = 'main' }
+ab_utils = { path = "/mnt/libraries/home/ab_utils" } # Local path while GitHub inaccessible
+# ab_utils = { git = "https://github.com/alexblakes/ab_utils.git", branch = 'main' }
 
 [tool.pixi.tasks]
 ruff_lint = "ruff check --fix"
@@ -44,22 +47,4 @@ ruff_format = "ruff format"
 smk_format = "snakefmt Snakefile workflow/"
 fmt = { depends-on = ["ruff_lint", "ruff_format", "smk_format"] }
 smk = "snakemake --cores 4"
-dir_general = "mkdir -p data/{raw,interim,final,manual,external,scratch} log scripts"
-dir_package = { args = [
-    "package_name",
-], cmd = "mkdir -p src/{{ package_name }}" }
-init_package = { args = [
-    "package_name",
-], cmd = "touch src/{{ package_name }}/__init__.py" }
 
-[tool.pixi.tasks.setup]
-args = ["package_name"]
-depends-on = [
-    { task = "dir_general" },
-    { task = "dir_package", args = [
-        "{{ package_name }}",
-    ] },
-    { task = "init_package", args = [
-        "{{ package_name }}",
-    ] },
-]
