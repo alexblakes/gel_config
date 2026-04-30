@@ -13,3 +13,10 @@ Configuration for projects in the GEL research environment and CloudOS.
 - Start a cookiecutter project: `cookiecutter https://github.com/alexblakes/cookiecutter-genomics.git`
 - Copy over VSCode keyboard shortcuts
 - Remove all Firefox keyboard shortcuts: `about:keyboard`
+
+## Other installs
+- Install `ab_utils` locally. Default path in `pyproject.toml`.
+- Install `oh-my-zsh` manually. Instructions [here](https://github.com/ohmyzsh/ohmyzsh#manual-installation).
+
+## TODO
+zsh aliases config
