@@ -7,10 +7,11 @@ set -eu
 conda install pixi -y
 
 # Update pixi global config
+mkdir -p "${HOME}/.pixi"
 printf 'default-channels = ["conda-forge", "bioconda"]\n' >> "${HOME}/.pixi/config.toml"
 
 # Install global packages with pixi
-pixi global install gh git starship nano ensembl-vep
+pixi global install gh git starship nano ensembl-vep ripgrep
 
 # Install Oh My Zsh: 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
